@@ -153,6 +153,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/reloc_vis.dir/build.make CMakeFiles/reloc_vis.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/reloc_engine.o: src/reloc_engine.cpp.o
+.PHONY : src/reloc_engine.o
+
+# target to build an object file
+src/reloc_engine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reloc_vis.dir/build.make CMakeFiles/reloc_vis.dir/src/reloc_engine.cpp.o
+.PHONY : src/reloc_engine.cpp.o
+
+src/reloc_engine.i: src/reloc_engine.cpp.i
+.PHONY : src/reloc_engine.i
+
+# target to preprocess a source file
+src/reloc_engine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reloc_vis.dir/build.make CMakeFiles/reloc_vis.dir/src/reloc_engine.cpp.i
+.PHONY : src/reloc_engine.cpp.i
+
+src/reloc_engine.s: src/reloc_engine.cpp.s
+.PHONY : src/reloc_engine.s
+
+# target to generate assembly for a file
+src/reloc_engine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reloc_vis.dir/build.make CMakeFiles/reloc_vis.dir/src/reloc_engine.cpp.s
+.PHONY : src/reloc_engine.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -165,6 +189,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/reloc_engine.o"
+	@echo "... src/reloc_engine.i"
+	@echo "... src/reloc_engine.s"
 .PHONY : help
 
 

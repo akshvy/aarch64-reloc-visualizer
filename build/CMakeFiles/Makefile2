@@ -81,12 +81,12 @@ clean: CMakeFiles/reloc_vis.dir/clean
 CMakeFiles/reloc_vis.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/reloc_vis.dir/build.make CMakeFiles/reloc_vis.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/reloc_vis.dir/build.make CMakeFiles/reloc_vis.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/akshay/aarch64-reloc-visualizer/build/CMakeFiles --progress-num=1,2 "Built target reloc_vis"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/akshay/aarch64-reloc-visualizer/build/CMakeFiles --progress-num=1,2,3 "Built target reloc_vis"
 .PHONY : CMakeFiles/reloc_vis.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/reloc_vis.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/akshay/aarch64-reloc-visualizer/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/akshay/aarch64-reloc-visualizer/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/reloc_vis.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/akshay/aarch64-reloc-visualizer/build/CMakeFiles 0
 .PHONY : CMakeFiles/reloc_vis.dir/rule
