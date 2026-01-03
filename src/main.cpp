@@ -4,14 +4,19 @@
 #include "reloc_engine.hpp"
 
 void display_comparison(std::string label, uint32_t instr) {
+    // Fix the label width for alignment
     std::cout << std::left << std::setw(10) << label << " | ";
     
-    // Hex View (like Rizin)
+    // Hex View (Professional 0x prefix)
     std::cout << "Hex: 0x" << std::hex << std::setw(8) << std::setfill('0') << instr << " | ";
     
-    // Binary View (for bit-precision)
-    std::bitset<32> bits(instr);
-    std::cout << "Bin: " << bits << std::dec << std::endl;
+    // Binary View with bit grouping (for readability)
+    std::cout << "Bin: ";
+    for (int i = 31; i >= 0; i--) {
+        std::cout << ((instr >> i) & 1);
+        if (i % 8 == 0 && i != 0) std::cout << " "; // Space every 8 bits
+    }
+    std::cout << std::dec << std::endl;
 }
 
 int main() {
