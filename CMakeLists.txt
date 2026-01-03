@@ -8,4 +8,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include_directories(include)
 
 # Tell CMake to build our executable from the main.cpp file
-add_executable(reloc_vis src/main.cpp)
+add_executable(reloc_vis src/main.cpp src/reloc_engine.cpp)
