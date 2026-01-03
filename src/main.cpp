@@ -19,6 +19,19 @@ void display_comparison(std::string label, uint32_t instr) {
     std::cout << std::dec << std::endl;
 }
 
+void display_byte_view(uint32_t instr) {
+    // Treat the 32-bit int as an array of 4 individual bytes
+    const uint8_t* bytes = reinterpret_cast<const uint8_t*>(&instr);
+    
+    std::cout << "Byte Order (LE): ";
+    for (int i = 0; i < 4; ++i) {
+        // Output each byte in hex with a space
+        std::cout << std::hex << std::setw(2) << std::setfill('0') 
+                  << static_cast<int>(bytes[i]) << " ";
+    }
+    std::cout << std::dec << std::endl;
+}
+
 int main() {
     uint32_t original = 0x90000000; // ADRP X0, 0
     uint64_t delta = 0x2;           // Example page delta
