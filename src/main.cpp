@@ -33,15 +33,21 @@ void display_byte_view(uint32_t instr) {
 }
 
 int main() {
-    uint32_t original = 0x90000000; // ADRP X0, 0
-    uint64_t delta = 0x2;           // Example page delta
+    uint32_t original = 0x90000000; 
+    uint64_t delta = 0x2;           
     
     uint32_t patched = RelocationVisualizer::patch_adrp(original, delta);
     
     std::cout << "AArch64 Relocation Patch Visualization\n";
     std::cout << "========================================\n";
+    
     display_comparison("Original", original);
+    display_byte_view(original);
+    
+    std::cout << "----------------------------------------\n";
+    
     display_comparison("Patched", patched);
+    display_byte_view(patched);
     
     return 0;
 }
