@@ -32,21 +32,37 @@ void display_byte_view(uint32_t instr) {
     std::cout << std::dec << std::endl;
 }
 
+void display_mask_view() {
+    // 0x60FFFE0 is the mask for bits [30:29] and [23:5]
+    uint32_t mask = (0x3 << 29) | (0x7FFFF << 5); 
+    
+    std::cout << std::left << std::setw(10) << "Reloc Mask" << " | ";
+    std::cout << "Hex: 0x" << std::hex << mask << " | Bin: ";
+    
+    for (int i = 31; i >= 0; i--) {
+        if ((mask >> i) & 1) {
+            std::cout << "^"; // Highlight active bits
+        } else {
+            std::cout << "."; // Show inactive bits as dots
+        }
+        if (i % 8 == 0 && i != 0) std::cout << " ";
+    }
+    std::cout << std::dec << std::endl;
+}
+
 int main() {
     uint32_t original = 0x90000000; 
     uint64_t delta = 0x2;           
-    
     uint32_t patched = RelocationVisualizer::patch_adrp(original, delta);
     
-    std::cout << "AArch64 Relocation Patch Visualization\n";
+    std::cout << "AArch64 Relocation Visualizer v1.0\n";
     std::cout << "========================================\n";
-    
     display_comparison("Original", original);
-    display_byte_view(original);
-    
-    std::cout << "----------------------------------------\n";
-    
+    display_mask_view(); // Highlight the 'allowed' bits
     display_comparison("Patched", patched);
+    
+    std::cout << "\nMemory View (Rizin Style):\n";
+    display_byte_view(original);
     display_byte_view(patched);
     
     return 0;
