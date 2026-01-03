@@ -1,0 +1,3 @@
+/home/akshay/aarch64-reloc-visualizer/build/CMakeFiles/reloc_vis.dir
+/home/akshay/aarch64-reloc-visualizer/build/CMakeFiles/edit_cache.dir
+/home/akshay/aarch64-reloc-visualizer/build/CMakeFiles/rebuild_cache.dir
