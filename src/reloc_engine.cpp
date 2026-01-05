@@ -7,6 +7,17 @@ uint64_t RelocationVisualizer::calculate_delta(uint64_t S, uint64_t A, uint64_t 
     return target_page - place_page;
 }
 
+uint32_t RelocationVisualizer::patch_adrp(uint32_t instr, uint64_t delta) {
+    // New Professional Check: Verify it's an ADRP instruction
+    if (!is_adrp(instr)) {
+        throw std::invalid_argument("Provided instruction is not a valid AArch64 ADRP opcode.");
+    }
+
+    uint32_t immlo = (delta & 0x3) << 29;
+    uint32_t immhi = ((delta >> 2) & 0x7FFFF) << 5;
+    
+    return (instr & ADRP_IMM_MASK) | immlo | immhi;
+}
 uint32_t RelocationVisualizer::patch_ldr64_lo12(uint32_t instr, uint64_t address) {
     // 1. Calculate the 12-bit offset
     uint64_t offset = address & 0xFFF;
