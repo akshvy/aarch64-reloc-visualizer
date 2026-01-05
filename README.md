@@ -45,12 +45,17 @@ make
 ```
 ## AArch64 Relocation Visualizer v1.0
 ========================================<br>
-Original   | Hex: 0x90000000 | Bin: 10010000 00000000 00000000 00000000<br>
-Reloc Mask | Hex: 0x60fffe0  | Bin: .^^..... ........ ........ ...^^^^^ <br>
-Patched    | Hex: 0xd0000000 | Bin: 11010000 00000000 00000000 00000000<br>
-
-Memory View (Rizin Style):
-Byte Order (LE): 00 00 00 90 
-Byte Order (LE): 00 00 00 d0
-
-
+<br>
+[1] ADRP Page Patching<br>
+Original     | Hex: 0x90000000 | Bin: 10010000 00000000 00000000 00000000<br>
+Patched00000 | Hex: 0xb0000000 | Bin: 10110000 00000000 00000000 00000000<br>
+Bit Change00 |                   | Bin: ..|..... ........ ........ ........<br>
+Byte Order (LE): 00 00 00 b0<br>
+----------------------------------------<br>
+<br>
+[2] LDR LO12 Offset Patching<br>
+Original0000 | Hex: 0xf9400000 | Bin: 11111001 01000000 00000000 00000000<br>
+Patched00000 | Hex: 0xf9411c00 | Bin: 11111001 01000001 00011100 00000000<br>
+Bit Change00 |                   | Bin: ........ .......| ...|||.. ........<br>
+Byte Order (LE): 00 1c 41 f9<br>
+<br>
