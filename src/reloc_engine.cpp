@@ -28,3 +28,19 @@ uint32_t RelocationVisualizer::patch_ldr64_lo12(uint32_t instr, uint64_t address
     // 3. Apply the mask and insert the scaled offset into bits [21:10]
     return (instr & LDR64_MASK) | (scaled_offset << 10);
 }
+
+uint32_t RelocationVisualizer::patch_ldr64_lo12(uint32_t instr, uint64_t address) {
+    if (!is_ldr64(instr)) {
+        throw std::invalid_argument("Instruction is not a valid AArch64 LDR (unsigned offset) opcode.");
+    }
+
+    // 1. Get the lower 12 bits (page offset)
+    uint64_t offset = address & 0xFFF; 
+    
+    // 2. Scale for 8-byte alignment (LDR Xn, [Xm, #imm])
+    // The immediate stored is actually offset / 8
+    uint32_t scaled_offset = static_cast<uint32_t>(offset >> 3);
+    
+    // 3. Insert scaled offset into bits [21:10]
+    return (instr & LDR64_IMM_MASK) | (scaled_offset << 10);
+}
