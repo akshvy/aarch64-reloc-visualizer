@@ -22,6 +22,18 @@ public:
 
     static uint64_t calculate_delta(uint64_t S, uint64_t A, uint64_t P);
     static uint32_t patch_adrp(uint32_t instr, uint64_t delta);
-};
+
+    // Inside class RelocationVisualizer
+    static constexpr uint32_t LDR64_IMM_MASK = 0xFFC003FF; // Clears bits [21:10]
+    static constexpr uint32_t LDR64_OPCODE_MASK = 0xFFC00000;
+    static constexpr uint32_t LDR64_OPCODE_VAL  = 0xF9400000;
+
+    // New verification check
+    static bool is_ldr64(uint32_t instr) {
+      return (instr & LDR64_OPCODE_MASK) == LDR64_OPCODE_VAL;
+   }
+
+    static uint32_t patch_ldr64_lo12(uint32_t instr, uint64_t address);
+    };
 
 #endif
